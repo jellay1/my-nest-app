@@ -1,5 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Pet } from '../pets/pet.entity.js';
+import type { Pet } from '../../pets/entities/pet.entity.js';
 
 @Entity()
 export class Owner {
@@ -15,6 +15,6 @@ export class Owner {
   @Column({ select: false })
   password: string;
 
-  @OneToMany(() => Pet, (pet) => pet.owner)
+  @OneToMany('Pet', 'owner')
   pets: Pet[];
 }

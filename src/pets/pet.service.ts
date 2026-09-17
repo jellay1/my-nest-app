@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException, } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Owner } from '../owners/owner.entity.js';
-import { Pet } from './pet.entity.js';
+import { Owner } from '../owners/entities/owner.entity.js';
+import { Pet } from './entities/pet.entity.js';
 import { CreatePetDto } from './dto/create-pet.dto.js';
 import { UpdatePetDto } from './dto/update-pet.dto.js';
 

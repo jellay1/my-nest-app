@@ -3,6 +3,7 @@ import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateOwnerDto {
+
   @ApiProperty({ example: 'John Doe' })
   @IsNotEmpty()
   name: string;

@@ -2,15 +2,19 @@ import { ConflictException, Injectable, NotFoundException } from '@nestjs/common
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
-import { Owner } from './owner.entity.js';
+import { Owner } from './entities/owner.entity.js';
 import { CreateOwnerDto } from './dto/create-owner.dto.js';
 import { UpdateOwnerDto } from './dto/update-owner.dto.js';
+import { Pet } from '../pets/entities/pet.entity.js';
 
 @Injectable()
 export class OwnersService {
     constructor(
         @InjectRepository(Owner)
         private readonly ownersRepository: Repository<Owner>,
+
+        @InjectRepository(Pet)
+        private readonly petsRepository: Repository<Pet>,
     ) { }
 
     async create(createOwnerDto: CreateOwnerDto) {
@@ -52,7 +56,7 @@ export class OwnersService {
         }
 
         if (updateOwnerDto.password !== undefined) {
-            owner.password = await bcrypt.hash(updateOwnerDto.password, 10)
+            owner.password = await bcrypt.hash(updateOwnerDto.password, 10);
         }
 
         if (updateOwnerDto.name !== undefined) {
@@ -65,16 +69,18 @@ export class OwnersService {
             });
 
             if (existingOwner && existingOwner.id !== id) {
-                throw new ConflictException('Email alredy exists');
+                throw new ConflictException('Email already exists');
             }
+
             owner.email = updateOwnerDto.email;
         }
-        const updatedOwner = await this.ownersRepository.save(owner);
 
+        const updatedOwner = await this.ownersRepository.save(owner);
         const { password: _password, ...ownerWithoutPassword } = updatedOwner;
 
         return ownerWithoutPassword;
     }
+
     async findOne(id: number) {
         const owner = await this.ownersRepository.findOne({
             where: { id },
@@ -85,14 +91,29 @@ export class OwnersService {
         }
 
         const { password, ...ownerWithoutPassword } = owner;
-
         return ownerWithoutPassword;
     }
+
+    async getPetsByOwner(id: number) {
+        const owner = await this.ownersRepository.findOne({
+            where: { id },
+        });
+
+        if (!owner) {
+            throw new NotFoundException(`Owner with ID ${id} not found`);
+        }
+
+        return this.petsRepository.find({
+            where: { owner: { id } },
+            relations: { owner: true },
+        });
+    }
+
     async findAll() {
         const owners = await this.ownersRepository.find();
-
         return owners.map(({ password, ...owner }) => owner);
     }
+
     async remove(id: number) {
         const owner = await this.ownersRepository.findOne({
             where: { id },

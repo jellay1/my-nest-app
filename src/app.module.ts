@@ -5,6 +5,7 @@ import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { OwnersModule } from './owners/owners.module.js';
 import { PetModule } from './pets/pet.module.js';
+import { TestService } from './test/test.service.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -29,6 +30,6 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     PetModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, TestService],
 })
 export class AppModule { }
