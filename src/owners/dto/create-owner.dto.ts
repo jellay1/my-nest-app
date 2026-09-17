@@ -18,3 +18,5 @@ export class CreateOwnerDto {
   @MinLength(8)
   password: string;
 }
+
+// DTO for creating a new owner

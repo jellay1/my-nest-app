@@ -31,3 +31,9 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         });
     }
 }
+
+
+//is a customized error handler for your NestJS application.
+// It catches every unhandled error or exception thrown anywhere in your code
+// and formats it into a single, clean, standardized JSON response before sending it back to the client.
+//example ani kay katong 404, 500 etc

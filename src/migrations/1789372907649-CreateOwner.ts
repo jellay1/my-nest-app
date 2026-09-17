@@ -13,3 +13,5 @@ export class CreateOwner1789372907649 implements MigrationInterface {
     }
 
 }
+
+// This migration creates a new table called "owner" with columns for id, name, email, and password.

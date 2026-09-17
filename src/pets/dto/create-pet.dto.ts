@@ -16,4 +16,7 @@ export class CreatePetDto {
     @IsNumber()
     @IsNotEmpty()
     ownerId: number;
+
 }
+
+// DTO for creating a new pet

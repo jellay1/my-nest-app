@@ -15,3 +15,6 @@ export class CreatePetTable1789378569605 implements MigrationInterface {
     }
 
 }
+
+// This migration creates a new table called "pet" with columns for id, name, type, and ownerId. 
+// It also adds a foreign key constraint to the ownerId column that references the id column of the owner table.

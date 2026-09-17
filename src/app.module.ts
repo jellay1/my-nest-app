@@ -33,3 +33,8 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
   providers: [AppService, TestService],
 })
 export class AppModule { }
+
+//organizational structure of the application, mo dictate sa mga modules, controllers, and services nga gamiton sa application.
+// providers: mo control sa services, repositories, and other dependencies nga gamiton sa application.
+// imports: mo control sa mga modules nga gamiton sa application, like OwnersModule and PetModule.
+// exports: mo control sa mga services nga available sa other modules, like TestService.

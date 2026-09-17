@@ -19,6 +19,11 @@ export class OwnersController {
         return this.ownersService.findAll();
     }
 
+    @Get(':id/pets')
+    getPetsByOwner(@Param('id', ParseIntPipe) id: number) {
+        return this.ownersService.getPetsByOwner(id);
+    }
+
     @Get(':id')
     findOne(@Param('id', ParseIntPipe) id: number) {
         return this.ownersService.findOne(id);

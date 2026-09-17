@@ -13,9 +13,9 @@ async function bootstrap() {
 
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: true,
-      forbidNonWhitelisted: true,
-      transform: true,
+      whitelist: true, // remove unknown properties
+      forbidNonWhitelisted: true, //rejects extra fields
+      transform: true, //converts plain request data into your DTO class instance
     }),
   );
 
@@ -31,3 +31,6 @@ async function bootstrap() {
   await app.listen(process.env.PORT ?? 3000);
 }
 await bootstrap();
+
+// entry point
+//mo dicatate sa nestjs aha nga compiled file ang execute una 
