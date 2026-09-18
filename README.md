@@ -13,7 +13,10 @@ Requirements:
 Install dependencies:
 
 ```bash
-npm install
+npm install -g @nestjs/cli
+nest new my-nest-app
+cd my-nest-app
+npm run start-dev
 ```
 
 ## Environment Variables
