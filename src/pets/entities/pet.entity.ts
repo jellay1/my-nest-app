@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import type { Owner } from '../../owners/entities/owner.entity.js';
+import { Owner } from '../../owners/entities/owner.entity.js';
 
 @Entity()
 export class Pet {
@@ -9,10 +9,13 @@ export class Pet {
     @Column()
     name: string;
 
-    @Column({ unique: true })
+    @Column()
     type: string;
 
-    @ManyToOne('Owner', 'pets', { onDelete: 'CASCADE', nullable: false })
+    @Column()
+    ownerId: number;
+
+    @ManyToOne(() => Owner, (owner) => owner.pets, { onDelete: 'CASCADE', nullable: false })
     @JoinColumn({ name: 'ownerId' })
     owner: Owner;
 }
