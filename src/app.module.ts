@@ -38,3 +38,6 @@ export class AppModule { }
 // providers: mo control sa services, repositories, and other dependencies nga gamiton sa application.
 // imports: mo control sa mga modules nga gamiton sa application, like OwnersModule and PetModule.
 // exports: mo control sa mga services nga available sa other modules, like TestService.
+
+/*organizational container for a closely 
+related set of capabilities (like controllers, services, and database entities)*/

@@ -21,4 +21,3 @@ export class CreateOwnerDto {
   password: string;
 }
 
-// DTO for creating a new owner

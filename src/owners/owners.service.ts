@@ -111,7 +111,7 @@ export class OwnersService {
 
     async findAll() {
         const owners = await this.ownersRepository.find();
-        return owners.map(({ password, ...owner }) => owner);
+        return owners;
     }
 
     async remove(id: number) {

@@ -12,3 +12,5 @@ import { PetController } from './pet.controller.js';
     exports: [PetService],
 })
 export class PetModule { }
+
+//A module is defined by passing a metadata object to @Module() with four main properties:
