@@ -14,7 +14,7 @@ export class CreateOwnerDto {
   @IsEmail()
   email: string;
 
-  @ApiProperty({ example: 'password123', minLength: 8 })
+  @ApiProperty({ example: 'password123', minLength: 8, writeOnly: true })
   @IsString()
   @IsNotEmpty()
   @MinLength(8)

@@ -1,8 +1,8 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule, ObserveInstrument } from '../apps/ntv360-api/src/modules/app/app.module.js';
+import { AppModule, ObserveInstrument } from './modules/app/app.module.js';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { GlobalExceptionFilter } from '../apps/ntv360-api/src/modules/common/global-exception.filter.js';
+import { GlobalExceptionFilter } from './modules/common/global-exception.filter.js';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {

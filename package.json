@@ -9,15 +9,15 @@
   "scripts": {
     "build": "nest build",
     "deploy": "nest deploy",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "format": "prettier --write \"apps/**/*.ts\" \"config/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
-    "migration:generate": "npm run build && typeorm migration:generate -d dist/data-source.js",
-    "migration:run": "npm run build && typeorm migration:run -d dist/data-source.js",
-    "migration:revert": "npm run build && typeorm migration:revert -d dist/data-source.js",
-    "lint": "oxlint src/ test/",
+    "start:prod": "node dist/apps/ntv360-api/src/main.js",
+    "migration:generate": "npm run build && typeorm migration:generate -d dist/config/ntv360/data-source.js",
+    "migration:run": "npm run build && typeorm migration:run -d dist/config/ntv360/data-source.js",
+    "migration:revert": "npm run build && typeorm migration:revert -d dist/config/ntv360/data-source.js",
+    "lint": "oxlint apps/ config/ test/",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:cov": "vitest run --coverage",
@@ -60,7 +60,7 @@
     "tsconfig-paths": "^4.2.0",
     "typescript": "^6.0.2",
     "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^4.1.2"
+    "vitest": "^4.1.11"
   },
   "allowScripts": {
     "bcrypt@6.0.0": true

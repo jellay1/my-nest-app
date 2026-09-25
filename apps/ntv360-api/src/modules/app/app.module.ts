@@ -3,9 +3,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { createObserveModule } from '@nestjs/observe';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
-import { OwnersModule } from './owners/owners.module.js';
-import { PetModule } from './pets/pet.module.js';
-import { TestService } from './test/test.service.js';
+import { OwnersModule } from '../owners/owners.module.js';
+import { PetModule } from '../pets/pet.module.js';
+import { TestService } from '../test/test.service.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 

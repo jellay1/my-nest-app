@@ -8,7 +8,7 @@ export const AppDataSource = new DataSource({
     password: process.env.DB_PASSWORD || 'root',
     database: process.env.DB_NAME || 'my_nest_app',
     entities: ['dist/**/*.entity.js'],
-    migrations: ['dist/migrations/*.js'],
+    migrations: ['dist/config/ntv360/migrations/*.js'],
     synchronize: false, // Schema auto-sync disabled for migrations 
     // //dictate how, when, and what data is updated or aligned between an external source 
     // (such as a database, cloud storage, API, or third-party platform) and a target destination (such as a data warehouse, app, 

@@ -5,9 +5,13 @@ import { Owner } from '../owners/entities/owner.entity.js';
 import { Pet } from './entities/pet.entity.js';
 import { CreatePetDto } from './dto/create-pet.dto.js';
 import { UpdatePetDto } from './dto/update-pet.dto.js';
+import { GetPetsFilterDto } from './dto/get-pets-filter.dto.js';
 
 @Injectable()
 export class PetService {
+    findAllByOwnerId(ownerId: number) {
+        throw new Error('Method not implemented.');
+    }
     constructor(
         @InjectRepository(Pet)
         private readonly petsRepository: Repository<Pet>,
@@ -36,10 +40,14 @@ export class PetService {
         return this.petsRepository.save(pet);
     }
 
-    findAll() {
+    async findAll(filter: GetPetsFilterDto) {
+        const { type, ownerId } = filter;
+
+        // Apply these filters in repository/query
         return this.petsRepository.find({
-            relations: {
-                owner: true,
+            where: {
+                ...(type && { type }),
+                ...(ownerId && { ownerId: Number(ownerId) }),
             },
         });
     }
