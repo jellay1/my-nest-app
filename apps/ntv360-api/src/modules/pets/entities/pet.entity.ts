@@ -18,4 +18,7 @@ export class Pet {
     @ManyToOne(() => Owner, (owner) => owner.pets, { onDelete: 'CASCADE', nullable: false })
     @JoinColumn({ name: 'ownerId' })
     owner: Owner;
+
+    @DeleteDateColumn()
+    deletedAt: Date;
 }

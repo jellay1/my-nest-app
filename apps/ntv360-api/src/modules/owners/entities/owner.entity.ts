@@ -17,4 +17,7 @@ export class Owner {
 
   @OneToMany('Pet', 'owner')
   pets: Pet[];
+
+  @DeleteDateColumn()
+  deletedAt: Date;
 }

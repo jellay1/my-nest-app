@@ -120,18 +120,10 @@ export class OwnersService {
     }
 
     async remove(id: number) {
-        const owner = await this.ownersRepository.findOne({
-            where: { id },
-        });
-
-        if (!owner) {
+        const owner = await this.ownersRepository.softDelete(id);
+        if (owner.affected === 0) {
             throw new NotFoundException(`Owner with ID ${id} not found`);
         }
-
-        await this.ownersRepository.remove(owner);
-
-        return {
-            message: `Owner with ID ${id} deleted successfully`,
-        };
+        return { message: `Owner with ID ${id} deleted successfully` };
     }
 }

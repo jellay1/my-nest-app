@@ -40,7 +40,7 @@ export class PetService {
         return this.petsRepository.save(pet);
     }
 
-    async findAll(filter: GetPetsFilterDto) {
+    async findAll(filter: GetPetsFilterDto, includeDeleted = false) {
         const { type, ownerId } = filter;
 
         // Apply these filters in repository/query
@@ -49,6 +49,7 @@ export class PetService {
                 ...(type && { type }),
                 ...(ownerId && { ownerId: Number(ownerId) }),
             },
+            withDeleted: includeDeleted,
         });
     }
 
@@ -100,8 +101,10 @@ export class PetService {
     }
 
     async remove(id: number) {
-        const pet = await this.findOne(id);
-        await this.petsRepository.remove(pet);
-        return { message: 'Pet deleted successfully' };
+        const pet = await this.petsRepository.softDelete(id);
+        if (pet.affected === 0){
+            throw new NotFoundException('Pet with id ${id} not found');
+        }
+        return { message: 'Pet soft deleted successfully' };
     }
 }
