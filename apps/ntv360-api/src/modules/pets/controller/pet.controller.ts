@@ -19,7 +19,7 @@ export class PetController {
     }
 
     @Get()
-    @ApiOperation({ summary: 'Get all pets' })
+    @ApiOperation({ summary: 'Get all pets by type and ownerId' })
     @ApiQuery({ name: 'type', required: false, type: String })
     @ApiQuery({ name: 'ownerId', required: false, type: Number })
     @ApiResponse({ status: 200, description: 'Return all pets' })

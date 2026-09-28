@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, NotFoundException, Query } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
@@ -6,7 +6,6 @@ import { Owner } from './entities/owner.entity.js';
 import { CreateOwnerDto } from './dto/create-owner.dto.js';
 import { UpdateOwnerDto } from './dto/update-owner.dto.js';
 import { Pet } from '../pets/entities/pet.entity.js';
-import { GetPetsFilterDto } from '../pets/dto/get-pets-filter.dto.js';
 import { GetOwnerFilterDto } from './dto/get-owner-filter.dto.js';
 
 @Injectable()
@@ -113,7 +112,7 @@ export class OwnersService {
 
     async findAll(filter: GetOwnerFilterDto) {
         const owners = await this.ownersRepository.find({
-            where: filter.email ? { email: filter.email } : {},
+            where: filter.email ? { email: filter.email } : {}, //where:sets the search condition for the database query,
         });
 
         return owners.map(({ password, ...owner }) => owner);
